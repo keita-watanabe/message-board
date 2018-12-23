@@ -1,10 +1,29 @@
-<h1>id: <%= @message.id %> のメッセージ編集ページ</h1>
+<div class="row">
+  <div class="col-xs-6">
+    <%= form_for(message) do |f| %>
+        <% if message.errors.any? %>
+        <div class="alert alert-warning">
+          <ul>
+            <% message.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= form_for(@message) do |f| %>
-  <%= f.label :content, 'メッセージ' %>
-  <%= f.text_field :content %>
+      <% end %>
 
-  <%= f.submit '投稿' %>
-<% end %>
+      <div class="form-group">
+        <%= f.label :title, 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
 
-<%= link_to '一覧に戻る', messages_path %>
+      <div class="form-group">
+        <%= f.label :content, 'メッセージ' %>
+        <%= f.text_field :content, class: 'form-control' %>
+      </div>
+
+      <%= f.submit '投稿', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
